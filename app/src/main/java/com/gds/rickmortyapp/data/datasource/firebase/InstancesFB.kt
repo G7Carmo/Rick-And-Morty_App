@@ -1,7 +1,11 @@
 package com.gds.rickmortyapp.data.datasource.firebase
 
-object InstancesFB {
-    val auth by lazy {
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
-    }
+object InstancesFB {
+    val auth by lazy { FirebaseAuth.getInstance() }
+    val remoteDatabase by lazy { FirebaseDatabase.getInstance() }
+    val storage by lazy { FirebaseStorage.getInstance() }
 }

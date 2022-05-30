@@ -1,23 +1,23 @@
 package com.gds.rickmortyapp.data.datasource.firebase
-import com.gds.rickmortyapp.data.model.user.LoggedInUser
-import com.gds.rickmortyapp.util.result.ResultUtil
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 
-interface Firebase {
+interface FirebaseUtil {
 
     interface Authenticator{
         suspend fun registerUser(
             email: String,
             password: String
-        ): ResultUtil<LoggedInUser>
+        ): Task<AuthResult>
 
         suspend fun login(
             email: String,
             password: String,
-        ): ResultUtil<LoggedInUser>
+        ): Task<AuthResult>
 
         suspend fun resetPassword(
             email: String,
-        ): ResultUtil<String>
+        ): Task<Void>
 
         suspend fun logout()
     }

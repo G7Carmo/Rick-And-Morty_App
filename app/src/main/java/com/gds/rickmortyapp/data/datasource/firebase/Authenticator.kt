@@ -1,26 +1,19 @@
 package com.gds.rickmortyapp.data.datasource.firebase
 
-import com.gds.rickmortyapp.data.model.user.LoggedInUser
-import com.gds.rickmortyapp.util.result.ResultUtil
+import com.gds.rickmortyapp.data.datasource.firebase.InstancesFB.auth
 
 
-class Authenticator : Firebase.Authenticator {
+class Authenticator : FirebaseUtil.Authenticator {
     override suspend fun registerUser(
         email: String,
         password: String
-    ): ResultUtil<LoggedInUser> {
-        TODO("Not yet implemented")
-    }
+    ) = auth.createUserWithEmailAndPassword(email, password)
 
-    override suspend fun login(email: String, password: String): ResultUtil<LoggedInUser> {
-        TODO("Not yet implemented")
-    }
 
-    override suspend fun resetPassword(email: String): ResultUtil<String> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun login(email: String, password: String) =
+        auth.signInWithEmailAndPassword(email, password)
 
-    override suspend fun logout() {
-        TODO("Not yet implemented")
-    }
+    override suspend fun resetPassword(email: String) = auth.sendPasswordResetEmail(email)
+
+    override suspend fun logout() = auth.signOut()
 }
