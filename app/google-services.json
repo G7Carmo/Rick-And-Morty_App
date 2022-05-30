@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "564667161732",
+    "project_id": "rickmorty-cae9f",
+    "storage_bucket": "rickmorty-cae9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564667161732:android:94025bfda734245a6376d1",
+        "android_client_info": {
+          "package_name": "com.gds.rickmortyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564667161732-ilpc55rhq1ahnbdltqmjl8ukmkv6a4ld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gds.rickmortyapp",
+            "certificate_hash": "2902f38304ca8cf31602ceb41d8ed288f178ceb4"
+          }
+        },
+        {
+          "client_id": "564667161732-6kplrkt5ngr1q3i8aaa5rgq8ugujd8dr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2EJ-rr3tFwvNVBBRX_vkl9wBWJHh6V-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564667161732-6kplrkt5ngr1q3i8aaa5rgq8ugujd8dr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

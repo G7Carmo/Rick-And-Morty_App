@@ -14,6 +14,7 @@ open class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when{
             modelClass.isAssignableFrom(SplashViewModel::class.java)->SplashViewModel() as T
+            modelClass.isAssignableFrom(LoginViewModel::class.java)->LoginViewModel() as T
             else -> throw IllegalArgumentException("ViewModel Nao encontrado !!")
         }
     }
