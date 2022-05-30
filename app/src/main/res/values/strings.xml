@@ -2,4 +2,11 @@
     <string name="app_name">RickMortyApp</string>
     <string name="app_version">Version 1.0.0</string>
     <string name="gds_name">Gds Desenvolvimento e Tecnologia</string>
+    <string name="titulo_login">Bem - Vindo</string>
+    <string name="email">Email :</string>
+    <string name="senha">Senha :</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="reset_senha">Reset Senha</string>
+    <string name="login_automatico">Login automatico</string>
 </resources>
