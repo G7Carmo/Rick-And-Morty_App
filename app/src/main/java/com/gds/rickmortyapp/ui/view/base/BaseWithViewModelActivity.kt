@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<VB : ViewBinding>  : AppCompatActivity() {
+abstract class BaseWithViewModelActivity<VB : ViewBinding,VM : ViewModel?>  : AppCompatActivity() {
     private var _binding : VB? = null
     protected val binding get() = _binding!!
+    abstract val viewModel : VM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = getLayoutBinding()

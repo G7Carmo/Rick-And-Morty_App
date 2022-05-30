@@ -15,7 +15,6 @@ open class ViewModelFactory(
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel() as T
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(authRepo!!) as T
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> RegisterViewModel(authRepo!!) as T
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> ResetPasswordViewModel(authRepo!!) as T
