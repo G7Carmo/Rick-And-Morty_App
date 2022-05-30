@@ -1,12 +1,13 @@
-package com.gds.rickmortyapp.ui.view
+package com.gds.rickmortyapp.ui.view.base
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 
-abstract class BaseActivity<VB : ViewBinding,VM : ViewModel>  : AppCompatActivity() {
+abstract class BaseFactoryActivity<VB : ViewBinding,VM : ViewModelFactory>  : AppCompatActivity() {
     private var _binding : VB? = null
     protected val binding get() = _binding!!
     abstract val viewModel : VM

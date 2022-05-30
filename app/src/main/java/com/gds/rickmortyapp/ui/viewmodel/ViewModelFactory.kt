@@ -18,6 +18,7 @@ open class ViewModelFactory(
             modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel() as T
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(authRepo!!) as T
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> RegisterViewModel(authRepo!!) as T
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> ResetPasswordViewModel(authRepo!!) as T
             else -> throw IllegalArgumentException("ViewModel Nao encontrado !!")
         }
     }

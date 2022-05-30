@@ -1,9 +1,10 @@
 package com.gds.rickmortyapp.data.datasource.firebase
 
 import com.gds.rickmortyapp.data.datasource.firebase.InstancesFB.auth
+import com.google.firebase.auth.FirebaseAuth
 
 
-class Authenticator : FirebaseUtil.Authenticator {
+class Authenticator(auth : FirebaseAuth) : FirebaseUtil.Authenticator {
     override suspend fun registerUser(
         email: String,
         password: String
