@@ -1,13 +1,15 @@
 package com.gds.rickmortyapp.di
 
+import android.content.Context
 import com.gds.rickmortyapp.data.datasource.interfaces.ApiRickMorty
+import com.gds.rickmortyapp.data.preferences.PreferencesUtil
 import com.gds.rickmortyapp.util.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object InstanceRetrofit {
+object Injection {
     private val retrofit: Retrofit by lazy {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -25,5 +27,9 @@ object InstanceRetrofit {
 
     val api: ApiRickMorty by lazy {
         retrofit.create(ApiRickMorty::class.java)
+    }
+
+    fun getPref(context: Context): PreferencesUtil {
+        return PreferencesUtil(context)
     }
 }
