@@ -1,6 +1,8 @@
 package com.gds.rickmortyapp.ui.view.login
 
+import android.graphics.Color
 import android.view.View
+import com.gds.rickmortyapp.R
 import com.gds.rickmortyapp.data.datasource.firebase.Authenticator
 import com.gds.rickmortyapp.data.datasource.firebase.InstancesFB
 import com.gds.rickmortyapp.data.preferences.PreferencesUtil
@@ -28,6 +30,10 @@ class LoginActivity : BaseFactoryActivity<ActivityLoginBinding, ViewModelFactory
     override fun getViewRoot() = binding.root
 
     override fun codeInject() {
+        setupActivity()
+    }
+
+    private fun setupActivity() {
         initView()
         listeners()
         observers()
@@ -43,10 +49,10 @@ class LoginActivity : BaseFactoryActivity<ActivityLoginBinding, ViewModelFactory
             nextScreen(RegisterActivity())
         }
         btnLogin.setOnClickListener {
-            
+
         }
-        loginAutmatico.setOnClickListener {
-            setAutomaticLogin(it)
+        loginAutmatico.setOnClickListener {view->
+            setAutomaticLogin(view)
         }
         resetPassword.setOnClickListener {
             nextScreen(ResetPasswordActivity())

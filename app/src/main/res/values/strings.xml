@@ -9,4 +9,7 @@
     <string name="cadastre_se">Cadastre-se</string>
     <string name="reset_senha">Reset Senha</string>
     <string name="login_automatico">Login automatico</string>
+    <string name="nome">Nome :</string>
+    <string name="confirmar_senha">Confirmar Senha :</string>
+    <string name="login">Já e Cadastrado ? \n Clique aqui para Login</string>
 </resources>

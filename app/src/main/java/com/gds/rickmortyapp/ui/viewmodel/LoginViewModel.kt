@@ -6,4 +6,5 @@ import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
 class LoginViewModel(
     private val authRepo: AuthenticatorRepository
 ) : ViewModel() {
+
 }
