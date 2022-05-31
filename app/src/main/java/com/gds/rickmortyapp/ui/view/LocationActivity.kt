@@ -1,5 +1,6 @@
 package com.gds.rickmortyapp.ui.view
 
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.gds.rickmortyapp.data.database.RickMortyDatabase
 import com.gds.rickmortyapp.data.datasource.ApiDataSource
@@ -10,26 +11,22 @@ import com.gds.rickmortyapp.di.Injection
 import com.gds.rickmortyapp.ui.adapter.CharacterAdapter
 import com.gds.rickmortyapp.ui.adapter.LocationAdapter
 import com.gds.rickmortyapp.ui.view.base.BaseWithViewModelActivity
+import com.gds.rickmortyapp.ui.viewmodel.EpisodeViewModel
 import com.gds.rickmortyapp.ui.viewmodel.LocationViewModel
+import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.extension.dialog
 import com.gds.rickmortyapp.util.result.ResultUtil
 
 class LocationActivity : BaseWithViewModelActivity<ActivityLocationBinding, LocationViewModel>() {
     private lateinit var locationList: List<LocationResult>
-    override val viewModel: LocationViewModel = getMyViewModels()
-
-    private fun getMyViewModels(): LocationViewModel {
-        return LocationViewModel(
-            LocationRepository(
-                RickMortyDatabase.invoke(this),
-                ApiDataSource(Injection.api)
-            )
-        )
-    }
 
     override fun getLayoutBinding() = ActivityLocationBinding.inflate(layoutInflater)
 
     override fun getViewRoot() = binding.root
+
+    override fun getMyViewModel(): LocationViewModel {
+        return ViewModelProvider(this, ViewModelFactory())[LocationViewModel::class.java]
+    }
 
     override fun codeInject() {
         observers()

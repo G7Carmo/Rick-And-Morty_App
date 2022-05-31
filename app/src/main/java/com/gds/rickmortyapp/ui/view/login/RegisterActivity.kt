@@ -11,15 +11,14 @@ import com.gds.rickmortyapp.util.extension.nextScreenWithFinish
 import com.gds.rickmortyapp.util.extension.stringValid
 
 class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, RegisterViewModel>() {
-    override val viewModel: RegisterViewModel = getMyViewModel()
-
-    private fun getMyViewModel(): RegisterViewModel {
-        return ViewModelProvider(this,ViewModelFactory())[RegisterViewModel::class.java]
-    }
 
     override fun getLayoutBinding() = ActivityRegisterBinding.inflate(layoutInflater)
 
     override fun getViewRoot() = binding.root
+
+    override fun getMyViewModel(): RegisterViewModel {
+        return ViewModelProvider(this,ViewModelFactory())[RegisterViewModel::class.java]
+    }
 
     override fun codeInject() {
         listeners()

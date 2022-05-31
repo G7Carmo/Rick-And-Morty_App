@@ -1,5 +1,6 @@
 package com.gds.rickmortyapp.ui.view
 
+import androidx.lifecycle.ViewModelProvider
 import com.gds.rickmortyapp.data.database.RickMortyDatabase
 import com.gds.rickmortyapp.data.datasource.ApiDataSource
 import com.gds.rickmortyapp.data.model.personagem.CharacterResult
@@ -8,6 +9,7 @@ import com.gds.rickmortyapp.databinding.ActivityCharacterBinding
 import com.gds.rickmortyapp.di.Injection
 import com.gds.rickmortyapp.ui.view.base.BaseWithViewModelActivity
 import com.gds.rickmortyapp.ui.viewmodel.CharacterViewModel
+import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.extension.dialog
 import com.gds.rickmortyapp.util.extension.hide
 import com.gds.rickmortyapp.util.extension.show
@@ -16,21 +18,13 @@ import com.gds.rickmortyapp.util.result.ResultUtil
 class CharacterActivity :
     BaseWithViewModelActivity<ActivityCharacterBinding, CharacterViewModel>() {
     private lateinit var characterList: List<CharacterResult>
-
-    override val viewModel: CharacterViewModel = getMyViewModel()
-
-    private fun getMyViewModel(): CharacterViewModel {
-        return CharacterViewModel(
-            CharacterRepository(
-                RickMortyDatabase.invoke(this),
-                ApiDataSource(Injection.api)
-            )
-        )
-    }
-
     override fun getLayoutBinding() = ActivityCharacterBinding.inflate(layoutInflater)
 
     override fun getViewRoot() = binding.root
+
+    override fun getMyViewModel(): CharacterViewModel {
+        return ViewModelProvider(this,ViewModelFactory())[CharacterViewModel::class.java]
+    }
 
     override fun codeInject() {
         observers()

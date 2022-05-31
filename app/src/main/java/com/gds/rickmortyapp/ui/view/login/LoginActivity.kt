@@ -14,12 +14,15 @@ import com.gds.rickmortyapp.util.extension.nextScreen
 class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewModel>() {
     private lateinit var email: String
     private lateinit var password: String
-    override val viewModel: LoginViewModel =
-        ViewModelProvider(this, ViewModelFactory())[LoginViewModel::class.java]
+
 
     override fun getLayoutBinding() = ActivityLoginBinding.inflate(layoutInflater)
 
     override fun getViewRoot() = binding.root
+
+    override fun getMyViewModel(): LoginViewModel {
+        return ViewModelProvider(this,ViewModelFactory())[LoginViewModel::class.java]
+    }
 
     override fun codeInject() {
         setupActivity()

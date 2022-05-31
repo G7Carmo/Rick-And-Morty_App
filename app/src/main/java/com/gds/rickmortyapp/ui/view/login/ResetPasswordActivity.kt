@@ -11,13 +11,14 @@ import com.gds.rickmortyapp.ui.viewmodel.ResetPasswordViewModel
 import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 
 class ResetPasswordActivity :
-    BaseWithViewModelActivity<ActivityResetPasswordBinding, ResetPasswordViewModel>() {
-    override val viewModel: ResetPasswordViewModel =
-        ViewModelProvider(this, ViewModelFactory())[ResetPasswordViewModel::class.java]
-
+    BaseWithViewModelActivity<ActivityResetPasswordBinding,ResetPasswordViewModel>() {
     override fun getLayoutBinding() = ActivityResetPasswordBinding.inflate(layoutInflater)
 
     override fun getViewRoot() = binding.root
+
+    override fun getMyViewModel(): ResetPasswordViewModel {
+        return ViewModelProvider(this,ViewModelFactory())[ResetPasswordViewModel::class.java]
+    }
 
     override fun codeInject() {
         initViews()
