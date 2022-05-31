@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_character.xml" value="0.12135416666666667" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_episode.xml" value="0.10989583333333333" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_location.xml" value="0.10989583333333333" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -10,6 +11,9 @@
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_reset_password.xml" value="0.25" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/item_list_character.xml" value="0.10885416666666667" />
+        <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/item_list_episode.xml" value="0.10989583333333333" />
+        <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/item_list_location.xml" value="0.10989583333333333" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/item_list_main.xml" value="0.10885416666666667" />
         <entry key="..\:/ProjetosOficial/Kotlin/RickMortyApp/app/src/main/res/layout/toolbar.xml" value="0.10885416666666667" />
       </map>

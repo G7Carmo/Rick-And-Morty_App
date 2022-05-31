@@ -3,7 +3,6 @@ package com.gds.rickmortyapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gds.rickmortyapp.data.model.localizacao.LocationResult
 import com.gds.rickmortyapp.databinding.ActivityCharacterBinding
 
 class CharacterAdapter(

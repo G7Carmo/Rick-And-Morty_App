@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gds.rickmortyapp.data.model.localizacao.LocationResult
-import com.gds.rickmortyapp.databinding.ActivityCharacterBinding
 import com.gds.rickmortyapp.databinding.ActivityLocationBinding
 
 class LocationAdapter(

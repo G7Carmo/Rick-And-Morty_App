@@ -54,26 +54,7 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
         password: String,
         confirmPassword: String
     ) {
-        if (name.isNotEmpty()) {
-            if (email.isNotEmpty()) {
-                if (password.isNotEmpty()) {
-                    if (confirmPassword.isNotEmpty()) {
-                        if (password == confirmPassword) {
-                            val user = NewUser(displayName = name, email = email, passwd = password)
-                            registerAndSaveDataUser(user)
-                        }
-                    } else {
-                        binding.textInputName.error = getString(R.string.campo_vazio)
-                    }
-                } else {
-                    binding.textInputName.error = getString(R.string.campo_vazio)
-                }
-            } else {
-                binding.textInputName.error = getString(R.string.campo_vazio)
-            }
-        } else {
-            binding.textInputName.error = getString(R.string.campo_vazio)
-        }
+
     }
 
     private fun registerAndSaveDataUser(user: NewUser) {
