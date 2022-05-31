@@ -16,7 +16,7 @@
         android:textColor="@color/black"
         android:textSize="60sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textInputEmail"
+        app:layout_constraintBottom_toTopOf="@+id/textInputName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEmail"
+        android:id="@+id/textInputName"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEmail">
+        app:layout_constraintTop_toBottomOf="@+id/textInputName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editInputSenha"

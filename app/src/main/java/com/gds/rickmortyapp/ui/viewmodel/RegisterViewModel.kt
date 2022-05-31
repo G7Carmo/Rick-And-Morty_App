@@ -1,12 +1,17 @@
 package com.gds.rickmortyapp.ui.viewmodel
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gds.rickmortyapp.R
 import com.gds.rickmortyapp.data.model.user.LoggedInUser
 import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
+import com.gds.rickmortyapp.util.helper.Login.isPasswordValid
+import com.gds.rickmortyapp.util.helper.Login.isUserNameValid
 import com.gds.rickmortyapp.util.result.ResultUtil
+import com.gds.rickmortyapp.util.state.LoginFormState
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -18,6 +23,9 @@ class RegisterViewModel(
 ) : ViewModel() {
     private val _userRegister = MutableLiveData<ResultUtil<LoggedInUser>>()
     val userRegister: LiveData<ResultUtil<LoggedInUser>> get() = _userRegister
+    private val _loginForm = MutableLiveData<LoginFormState>()
+    val loginFormState: LiveData<LoginFormState> = _loginForm
+
 
 
     fun register(email: String, password: String) = viewModelScope.launch {
@@ -43,4 +51,16 @@ class RegisterViewModel(
                 _userRegister.value = ResultUtil.Error(msg)
             }
     }
+
+    fun loginDataChanged(username: String, password: String) {
+        if (!isUserNameValid(username)) {
+            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
+        } else if (!isPasswordValid(password)) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+        } else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+        }
+    }
+
+
 }

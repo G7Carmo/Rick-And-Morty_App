@@ -12,4 +12,6 @@
     <string name="nome">Nome :</string>
     <string name="confirmar_senha">Confirmar Senha :</string>
     <string name="login">Já e Cadastrado ? \n Clique aqui para Login</string>
+    <string name="invalid_username">Nome Invalido</string>
+    <string name="invalid_password">senha invalida</string>
 </resources>
