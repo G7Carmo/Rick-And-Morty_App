@@ -1,6 +1,7 @@
 package com.gds.rickmortyapp.util.helper
 
 import android.util.Patterns
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 object Login {

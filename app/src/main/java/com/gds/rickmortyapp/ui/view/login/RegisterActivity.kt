@@ -1,24 +1,20 @@
 package com.gds.rickmortyapp.ui.view.login
 
+import androidx.lifecycle.ViewModelProvider
 import com.gds.rickmortyapp.R
-import com.gds.rickmortyapp.data.datasource.firebase.Authenticator
-import com.gds.rickmortyapp.data.datasource.firebase.InstancesFB
 import com.gds.rickmortyapp.data.model.user.NewUser
-import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
 import com.gds.rickmortyapp.databinding.ActivityRegisterBinding
 import com.gds.rickmortyapp.ui.view.base.BaseWithViewModelActivity
 import com.gds.rickmortyapp.ui.viewmodel.RegisterViewModel
+import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.extension.nextScreenWithFinish
+import com.gds.rickmortyapp.util.extension.stringValid
 
 class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, RegisterViewModel>() {
-    private lateinit var name: String
-    private lateinit var email: String
-    private lateinit var password: String
-    private lateinit var confirmPassword: String
     override val viewModel: RegisterViewModel = getMyViewModel()
 
     private fun getMyViewModel(): RegisterViewModel {
-        return RegisterViewModel(AuthenticatorRepository(Authenticator(InstancesFB.auth)))
+        return ViewModelProvider(this,ViewModelFactory())[RegisterViewModel::class.java]
     }
 
     override fun getLayoutBinding() = ActivityRegisterBinding.inflate(layoutInflater)
@@ -26,16 +22,8 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
     override fun getViewRoot() = binding.root
 
     override fun codeInject() {
-        initViews()
         listeners()
         observers()
-    }
-
-    private fun initViews() = with(binding) {
-        name = editInputNome.text.toString().trim()
-        email = editInputEmailCadastro.text.toString().trim()
-        password = editInputSenhaCad.text.toString().trim()
-        confirmPassword = editTextConfirmSenha.text.toString().trim()
     }
 
     private fun listeners() = with(binding) {
@@ -44,16 +32,31 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
             finish()
         }
         btnRegister.setOnClickListener {
-            validandoCampos(name, email, password, confirmPassword)
+            initViews()
         }
     }
 
-    private fun validandoCampos(
-        name: String,
-        email: String,
-        password: String,
-        confirmPassword: String
-    ) {
+    private fun initViews() = with(binding) {
+        val name = editInputNome.stringValid().apply {
+            this.isEmpty().apply {
+                textInputName.error = getString(R.string.campo_vazio)
+            }
+        }
+        val email = editInputEmailCadastro.stringValid().apply {
+            this.isEmpty().apply {
+                textInputName.error = getString(R.string.campo_vazio)
+            }
+        }
+        val password = editInputSenhaCad.stringValid().apply {
+            this.isEmpty().apply {
+                textInputName.error = getString(R.string.campo_vazio)
+            }
+        }
+        val confirmPassword = editTextConfirmSenha.stringValid().apply {
+            this.isEmpty().apply {
+                textInputName.error = getString(R.string.campo_vazio)
+            }
+        }
 
     }
 
@@ -66,5 +69,6 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
     }
 
 }
+
 
 

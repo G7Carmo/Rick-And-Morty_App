@@ -1,6 +1,11 @@
 package com.gds.rickmortyapp.util.extension
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 fun View.hide(){
     visibility = View.INVISIBLE
@@ -8,4 +13,8 @@ fun View.hide(){
 
 fun View.show(){
     visibility = View.VISIBLE
+}
+
+fun TextInputEditText.stringValid(): String {
+    return text.toString().trim()
 }

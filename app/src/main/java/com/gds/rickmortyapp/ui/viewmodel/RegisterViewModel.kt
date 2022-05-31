@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gds.rickmortyapp.R
 import com.gds.rickmortyapp.data.model.user.LoggedInUser
+import com.gds.rickmortyapp.data.model.user.NewUser
 import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
 import com.gds.rickmortyapp.util.helper.Login.isPasswordValid
 import com.gds.rickmortyapp.util.helper.Login.isUserNameValid
@@ -51,16 +52,5 @@ class RegisterViewModel(
                 _userRegister.value = ResultUtil.Error(msg)
             }
     }
-
-    fun loginDataChanged(username: String, password: String) {
-        if (!isUserNameValid(username)) {
-            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
-        } else if (!isPasswordValid(password)) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-        } else {
-            _loginForm.value = LoginFormState(isDataValid = true)
-        }
-    }
-
 
 }

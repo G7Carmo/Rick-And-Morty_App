@@ -1,30 +1,21 @@
 package com.gds.rickmortyapp.ui.view.login
 
-import android.graphics.Color
 import android.view.View
-import com.gds.rickmortyapp.R
-import com.gds.rickmortyapp.data.datasource.firebase.Authenticator
-import com.gds.rickmortyapp.data.datasource.firebase.InstancesFB
-import com.gds.rickmortyapp.data.preferences.PreferencesUtil
-import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
+import androidx.lifecycle.ViewModelProvider
 import com.gds.rickmortyapp.databinding.ActivityLoginBinding
 import com.gds.rickmortyapp.di.Injection
 import com.gds.rickmortyapp.ui.view.base.BaseFactoryActivity
+import com.gds.rickmortyapp.ui.view.base.BaseWithViewModelActivity
+import com.gds.rickmortyapp.ui.viewmodel.LoginViewModel
 import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.Constants.LOGIN_AUTOMATIC
 import com.gds.rickmortyapp.util.extension.nextScreen
-import com.gds.rickmortyapp.util.extension.nextScreenWithFinish
 
-class LoginActivity : BaseFactoryActivity<ActivityLoginBinding, ViewModelFactory>() {
+class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewModel>() {
     private lateinit var email: String
     private lateinit var password: String
-    override val viewModel: ViewModelFactory = ViewModelFactory(
-        authRepo = AuthenticatorRepository(
-            Authenticator(
-                InstancesFB.auth
-            )
-        )
-    )
+    override val viewModel: LoginViewModel =
+        ViewModelProvider(this, ViewModelFactory())[LoginViewModel::class.java]
 
     override fun getLayoutBinding() = ActivityLoginBinding.inflate(layoutInflater)
 
@@ -52,7 +43,7 @@ class LoginActivity : BaseFactoryActivity<ActivityLoginBinding, ViewModelFactory
         btnLogin.setOnClickListener {
 
         }
-        loginAutmatico.setOnClickListener {view->
+        loginAutmatico.setOnClickListener { view ->
             setAutomaticLogin(view)
         }
         resetPassword.setOnClickListener {
