@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personagens"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="117dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCharacter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true">
+
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/pbMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_escuro"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="651dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

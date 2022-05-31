@@ -1,6 +1,7 @@
 package com.gds.rickmortyapp.util.helper
 
 import android.util.Patterns
+import com.google.android.material.textfield.TextInputLayout
 
 object Login {
     fun isUserNameValid(username: String): Boolean {
@@ -14,5 +15,4 @@ object Login {
     fun isPasswordValid(password: String): Boolean {
         return password.length > 5
     }
-
 }

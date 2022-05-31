@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
-        app:hintTextColor="@color/verde_escuro"
         android:hint="@string/email"
+        app:hintTextColor="@color/verde_escuro"
         app:layout_constraintBottom_toTopOf="@+id/textInputSenha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,9 +43,9 @@
             android:id="@+id/editInputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:inputType="textEmailAddress"
             android:textColorHint="#616161" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,9 +65,9 @@
             android:id="@+id/editInputSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:inputType="textPassword"
             android:textColorHint="#616161" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,9 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:checked="false"
         android:text="@string/login_automatico"
         android:textColor="#000000"
-        android:checked="false"
         android:textColorLink="@color/verde_escuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -108,9 +108,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:textStyle="bold"
         android:text="@string/cadastre_se"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -121,13 +121,24 @@
         android:id="@+id/resetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="128dp"
         android:clickable="true"
-        android:textStyle="bold"
         android:text="@string/reset_senha"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/pbLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:visibility="invisible"
+        android:background="@color/verde_escuro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
