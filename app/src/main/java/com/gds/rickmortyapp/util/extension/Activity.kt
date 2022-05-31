@@ -18,6 +18,12 @@ fun AppCompatActivity.nextScreen(activity: AppCompatActivity) {
         startActivity(this)
     }
 }
+fun AppCompatActivity.nextScreenWithFinish(activity: AppCompatActivity) {
+    Intent(this, activity::class.java).apply {
+        startActivity(this)
+        finish()
+    }
+}
 
 fun AppCompatActivity.isLoginAutomatic(activitySuccess: AppCompatActivity,activityFailure : AppCompatActivity) {
     when (Injection.getPref(this).getBoolean(LOGIN_AUTOMATIC)) {

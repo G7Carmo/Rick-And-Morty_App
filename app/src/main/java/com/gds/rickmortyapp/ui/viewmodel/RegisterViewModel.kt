@@ -9,6 +9,8 @@ import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
 import com.gds.rickmortyapp.util.result.ResultUtil
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
@@ -24,16 +26,18 @@ class RegisterViewModel(
             .addOnSuccessListener {
                 val user = LoggedInUser(it.user?.uid, it.user?.email, it.user?.displayName)
                 _userRegister.value = ResultUtil.Success(user)
-            }.addOnFailureListener {
+            }.addOnFailureListener {exception->
                 var msg = ""
                 try {
-                    throw it
+                    throw exception
+                } catch (e: FirebaseAuthWeakPasswordException) {
+                    msg = "Digite uma senha Mais Forte"
                 } catch (e: FirebaseAuthInvalidCredentialsException) {
-                    msg = "Email ou senha incorretos"
-                } catch (e: FirebaseAuthInvalidUserException) {
-                    msg = "Email incorreto ou nao cadastrado "
+                    msg = "Formato de email invalido"
+                } catch (e: FirebaseAuthUserCollisionException) {
+                    msg = "Endereço de usuario ja cadastrado"
                 } catch (e: Exception) {
-                    msg = "Falha ao logar " + e.message
+                    msg = " Erro ao cadastrar usuario " + e.message
                     e.printStackTrace()
                 }
                 _userRegister.value = ResultUtil.Error(msg)

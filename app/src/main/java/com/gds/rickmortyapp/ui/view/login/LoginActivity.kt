@@ -13,6 +13,7 @@ import com.gds.rickmortyapp.ui.view.base.BaseFactoryActivity
 import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.Constants.LOGIN_AUTOMATIC
 import com.gds.rickmortyapp.util.extension.nextScreen
+import com.gds.rickmortyapp.util.extension.nextScreenWithFinish
 
 class LoginActivity : BaseFactoryActivity<ActivityLoginBinding, ViewModelFactory>() {
     private lateinit var email: String

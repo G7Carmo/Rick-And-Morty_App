@@ -15,9 +15,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     override fun codeInject() {
         splashTimer(
             TIMER_SPLASH
-        ) { isLoginAutomatic(
-            activitySuccess = MainActivity(),
-            activityFailure = LoginActivity()
-        ) }
+        ) {
+            isLoginAutomatic(
+                activitySuccess = MainActivity(),
+                activityFailure = LoginActivity()
+            )
+            finish()
+        }
+
     }
 }

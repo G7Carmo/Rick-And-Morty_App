@@ -7,6 +7,7 @@ import com.gds.rickmortyapp.databinding.ActivityRegisterBinding
 import com.gds.rickmortyapp.ui.view.base.BaseFactoryActivity
 import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.extension.nextScreen
+import com.gds.rickmortyapp.util.extension.nextScreenWithFinish
 
 class RegisterActivity : BaseFactoryActivity<ActivityRegisterBinding, ViewModelFactory>() {
     private lateinit var name : String
@@ -40,7 +41,8 @@ class RegisterActivity : BaseFactoryActivity<ActivityRegisterBinding, ViewModelF
 
     private fun listeners() = with(binding) {
         textLogin.setOnClickListener {
-            nextScreen(LoginActivity())
+            nextScreenWithFinish(LoginActivity())
+            finish()
         }
         btnRegister.setOnClickListener {
 
