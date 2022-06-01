@@ -17,4 +17,6 @@
     <string name="campo_vazio">campo vazio</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="capo_diferente">Campo precisam ser iguais</string>
+    <string name="vazio" />
 </resources>

@@ -15,6 +15,6 @@ fun View.show(){
     visibility = View.VISIBLE
 }
 
-fun TextInputEditText.stringValid(): String {
+fun TextInputEditText.extractString(): String {
     return text.toString().trim()
 }

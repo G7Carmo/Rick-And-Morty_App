@@ -4,13 +4,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.gds.rickmortyapp.R
 import com.gds.rickmortyapp.data.model.user.NewUser
 import com.gds.rickmortyapp.databinding.ActivityRegisterBinding
+import com.gds.rickmortyapp.ui.view.MainActivity
 import com.gds.rickmortyapp.ui.view.base.BaseWithViewModelActivity
 import com.gds.rickmortyapp.ui.viewmodel.RegisterViewModel
 import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
-import com.gds.rickmortyapp.util.extension.nextScreenWithFinish
-import com.gds.rickmortyapp.util.extension.stringValid
+import com.gds.rickmortyapp.util.extension.*
+import com.gds.rickmortyapp.util.result.ResultUtil
+import com.google.android.material.textfield.TextInputLayout
 
 class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, RegisterViewModel>() {
+    private lateinit var name : String
+    private lateinit var email : String
+    private lateinit var password : String
+    private lateinit var confirmPassword : String
 
     override fun getLayoutBinding() = ActivityRegisterBinding.inflate(layoutInflater)
 
@@ -36,27 +42,44 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
     }
 
     private fun initViews() = with(binding) {
-        val name = editInputNome.stringValid().apply {
-            this.isEmpty().apply {
-                textInputName.error = getString(R.string.campo_vazio)
-            }
-        }
-        val email = editInputEmailCadastro.stringValid().apply {
-            this.isEmpty().apply {
-                textInputName.error = getString(R.string.campo_vazio)
-            }
-        }
-        val password = editInputSenhaCad.stringValid().apply {
-            this.isEmpty().apply {
-                textInputName.error = getString(R.string.campo_vazio)
-            }
-        }
-        val confirmPassword = editTextConfirmSenha.stringValid().apply {
-            this.isEmpty().apply {
-                textInputName.error = getString(R.string.campo_vazio)
-            }
-        }
+        name = editInputNome.extractString()
+        email = editInputEmailCadastro.extractString()
+        password = editInputSenhaCad.extractString()
+        confirmPassword = editTextConfirmSenha.extractString()
+        validString(name,email,password,confirmPassword)
+    }
 
+    private fun validString(
+        name: String,
+        email: String,
+        password: String,
+        confirmPassword: String
+    ) {
+        verifyValueString(name,binding.textInputName)
+        verifyValueString(email,binding.textInputEmailCadastro)
+        verifyValueString(password,binding.textInputSenhaCad)
+        verifyValueString(confirmPassword,binding.textInputConfirSenha)
+        if (password.isEmpty() || confirmPassword.isEmpty()){
+            launchError(getString(R.string.campo_vazio),binding.textInputSenhaCad,binding.textInputConfirSenha)
+        }else{
+            launchError(getString(R.string.vazio),binding.textInputSenhaCad,binding.textInputConfirSenha)
+            if (password != confirmPassword){
+                launchError("Campos diferentes",binding.textInputSenhaCad,binding.textInputConfirSenha)
+            }else{
+                launchError(getString(R.string.vazio),binding.textInputSenhaCad,binding.textInputConfirSenha)
+                registerAndSaveDataUser(generateNewUser(name, email, password))
+            }
+        }
+    }
+
+
+    private fun verifyValueString(value: String, inputLayout: TextInputLayout){
+        if (value.isEmpty()) launchError(getString(R.string.campo_vazio),inputLayout)
+        if (value.isNotEmpty()) launchError("",inputLayout)
+    }
+
+    private fun generateNewUser(name: String, email: String, password: String): NewUser {
+        return NewUser(email = email, passwd = password, displayName = name)
     }
 
     private fun registerAndSaveDataUser(user: NewUser) {
@@ -64,7 +87,25 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
     }
 
     private fun observers() {
+        viewModel.userRegister.observe(this){
+            when(it){
+                is ResultUtil.Success->{
+                    binding.pbRegister.hide()
+                    viewModel.saveDataUser(it.data)
+                    nextScreen(MainActivity())
+                }
+                is ResultUtil.Error->{
+                    binding.pbRegister.hide()
+                    dialog("Falha ao cadastrar",it.msg)
+                }
+                is ResultUtil.Loading->{
+                    binding.pbRegister.show()
+                }
+            }
+        }
+        viewModel.saveDataUser.observe(this){
 
+        }
     }
 
 }

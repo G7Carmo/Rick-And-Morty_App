@@ -1,18 +1,14 @@
 package com.gds.rickmortyapp.util.extension
 
 import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.security.identity.CipherSuiteNotSupportedException
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.gds.rickmortyapp.R
-import com.gds.rickmortyapp.data.model.personagem.CharacterResult
 import com.gds.rickmortyapp.di.Injection
 import com.gds.rickmortyapp.util.Constants.LOGIN_AUTOMATIC
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 fun AppCompatActivity.splashTimer(milliseconds: Long,action : () -> Unit) {
@@ -54,4 +50,10 @@ fun AppCompatActivity.dialog(title:String,msg:String){
 
 fun AppCompatActivity.message(msg: String){
     Toast.makeText(this,msg,Toast.LENGTH_LONG).show()
+}
+
+fun AppCompatActivity.launchError(msg: String, vararg text: TextInputLayout){
+    text.forEach {
+        it.error = msg
+    }
 }

@@ -27,10 +27,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        app:errorEnabled="true"
-        android:layout_marginTop="179dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="1dp"
         android:hint="@string/nome"
+        app:errorEnabled="true"
         app:hintTextColor="@color/verde_escuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEmilCAdastro"
+        android:id="@+id/text_input_email_cadastro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -78,7 +78,7 @@
         app:hintTextColor="@color/verde_escuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEmilCAdastro">
+        app:layout_constraintTop_toBottomOf="@+id/text_input_email_cadastro">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editInputSenhaCad"

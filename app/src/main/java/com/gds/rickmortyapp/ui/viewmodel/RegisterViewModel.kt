@@ -1,31 +1,26 @@
 package com.gds.rickmortyapp.ui.viewmodel
 
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gds.rickmortyapp.R
+import com.gds.rickmortyapp.data.database.RickMortyDatabase
 import com.gds.rickmortyapp.data.model.user.LoggedInUser
-import com.gds.rickmortyapp.data.model.user.NewUser
 import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
-import com.gds.rickmortyapp.util.helper.Login.isPasswordValid
-import com.gds.rickmortyapp.util.helper.Login.isUserNameValid
 import com.gds.rickmortyapp.util.result.ResultUtil
-import com.gds.rickmortyapp.util.state.LoginFormState
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val authRepo: AuthenticatorRepository
+    private val authRepo: AuthenticatorRepository,
+    private val database: RickMortyDatabase,
 ) : ViewModel() {
     private val _userRegister = MutableLiveData<ResultUtil<LoggedInUser>>()
     val userRegister: LiveData<ResultUtil<LoggedInUser>> get() = _userRegister
-    private val _loginForm = MutableLiveData<LoginFormState>()
-    val loginFormState: LiveData<LoginFormState> = _loginForm
+    private val _saveDataUser = MutableLiveData<Boolean>()
+    val saveDataUser: LiveData<Boolean> = _saveDataUser
 
 
 
@@ -51,6 +46,10 @@ class RegisterViewModel(
                 }
                 _userRegister.value = ResultUtil.Error(msg)
             }
+    }
+
+    fun saveDataUser(data: LoggedInUser) {
+
     }
 
 }
