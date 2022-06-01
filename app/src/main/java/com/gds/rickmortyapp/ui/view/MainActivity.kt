@@ -27,7 +27,7 @@ class MainActivity : BaseWithViewModelActivity<ActivityMainBinding, MainViewMode
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): MainViewModel {
-        return ViewModelProvider(this, ViewModelFactory())[MainViewModel::class.java]
+        return ViewModelProvider(this, ViewModelFactory(this))[MainViewModel::class.java]
     }
 
     override fun codeInject() {

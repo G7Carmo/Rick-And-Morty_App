@@ -20,7 +20,7 @@ class EpisodeActivity : BaseWithViewModelActivity<ActivityEpisodeBinding, Episod
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): EpisodeViewModel {
-        return ViewModelProvider(this,ViewModelFactory())[EpisodeViewModel::class.java]
+        return ViewModelProvider(this,ViewModelFactory(this))[EpisodeViewModel::class.java]
     }
 
     override fun codeInject() {

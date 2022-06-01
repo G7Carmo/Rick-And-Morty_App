@@ -17,7 +17,7 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): RegisterViewModel {
-        return ViewModelProvider(this,ViewModelFactory())[RegisterViewModel::class.java]
+        return ViewModelProvider(this,ViewModelFactory(this))[RegisterViewModel::class.java]
     }
 
     override fun codeInject() {

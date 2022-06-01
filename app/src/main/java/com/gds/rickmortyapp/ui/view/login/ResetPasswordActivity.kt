@@ -17,7 +17,7 @@ class ResetPasswordActivity :
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): ResetPasswordViewModel {
-        return ViewModelProvider(this,ViewModelFactory())[ResetPasswordViewModel::class.java]
+        return ViewModelProvider(this,ViewModelFactory(this))[ResetPasswordViewModel::class.java]
     }
 
     override fun codeInject() {

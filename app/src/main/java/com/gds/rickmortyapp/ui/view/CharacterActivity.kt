@@ -23,7 +23,7 @@ class CharacterActivity :
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): CharacterViewModel {
-        return ViewModelProvider(this,ViewModelFactory())[CharacterViewModel::class.java]
+        return ViewModelProvider(this,ViewModelFactory(this))[CharacterViewModel::class.java]
     }
 
     override fun codeInject() {

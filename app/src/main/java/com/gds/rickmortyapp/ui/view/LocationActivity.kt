@@ -25,7 +25,7 @@ class LocationActivity : BaseWithViewModelActivity<ActivityLocationBinding, Loca
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): LocationViewModel {
-        return ViewModelProvider(this, ViewModelFactory())[LocationViewModel::class.java]
+        return ViewModelProvider(this, ViewModelFactory(this))[LocationViewModel::class.java]
     }
 
     override fun codeInject() {

@@ -21,7 +21,7 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): LoginViewModel {
-        return ViewModelProvider(this,ViewModelFactory())[LoginViewModel::class.java]
+        return ViewModelProvider(this,ViewModelFactory(this))[LoginViewModel::class.java]
     }
 
     override fun codeInject() {
