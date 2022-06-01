@@ -6,6 +6,6 @@ import com.google.firebase.storage.FirebaseStorage
 
 object InstancesFB {
     val auth by lazy { FirebaseAuth.getInstance() }
-    val remoteDatabase by lazy { FirebaseDatabase.getInstance() }
+    val remoteDatabase by lazy { FirebaseDatabase.getInstance().reference }
     val storage by lazy { FirebaseStorage.getInstance() }
 }

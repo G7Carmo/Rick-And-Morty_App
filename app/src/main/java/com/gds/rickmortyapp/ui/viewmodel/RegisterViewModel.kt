@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 
 class RegisterViewModel(
     private val authRepo: AuthenticatorRepository,
-    private val database: RickMortyDatabase,
 ) : ViewModel() {
     private val _userRegister = MutableLiveData<ResultUtil<LoggedInUser>>()
     val userRegister: LiveData<ResultUtil<LoggedInUser>> get() = _userRegister

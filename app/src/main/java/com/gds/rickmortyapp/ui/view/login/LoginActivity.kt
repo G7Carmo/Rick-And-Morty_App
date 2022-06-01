@@ -2,14 +2,18 @@ package com.gds.rickmortyapp.ui.view.login
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import com.gds.rickmortyapp.R
+import com.gds.rickmortyapp.data.model.user.NewUser
 import com.gds.rickmortyapp.databinding.ActivityLoginBinding
 import com.gds.rickmortyapp.di.Injection
+import com.gds.rickmortyapp.ui.view.MainActivity
 import com.gds.rickmortyapp.ui.view.base.BaseFactoryActivity
 import com.gds.rickmortyapp.ui.view.base.BaseWithViewModelActivity
 import com.gds.rickmortyapp.ui.viewmodel.LoginViewModel
 import com.gds.rickmortyapp.ui.viewmodel.ViewModelFactory
 import com.gds.rickmortyapp.util.Constants.LOGIN_AUTOMATIC
-import com.gds.rickmortyapp.util.extension.nextScreen
+import com.gds.rickmortyapp.util.extension.*
+import com.gds.rickmortyapp.util.result.ResultUtil
 
 class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewModel>() {
     private lateinit var email: String
@@ -29,14 +33,8 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
     }
 
     private fun setupActivity() {
-        initView()
         listeners()
         observers()
-    }
-
-    private fun initView() = with(binding) {
-        email = editInputEmail.text.toString().trim()
-        password = editInputSenha.text.toString().trim()
     }
 
     private fun listeners() = with(binding) {
@@ -44,7 +42,7 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
             nextScreen(RegisterActivity())
         }
         btnLogin.setOnClickListener {
-
+            initViews()
         }
         loginAutmatico.setOnClickListener { view ->
             setAutomaticLogin(view)
@@ -52,6 +50,27 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
         resetPassword.setOnClickListener {
             nextScreen(ResetPasswordActivity())
         }
+    }
+
+    private fun initViews() = with(binding){
+        email = editInputEmail.extractString()
+        password = editInputSenha.extractString()
+        verifyValues(email)
+        verifyValues(password)
+        loginUser(generateUser(email, password))
+    }
+
+    private fun loginUser(user: NewUser) {
+        viewModel.login(user.email!!,user.passwd!!)
+    }
+
+    private fun generateUser(email: String, password: String): NewUser {
+        return NewUser(email=email, passwd = password)
+    }
+
+    private fun verifyValues(value: String) {
+        if (value.isEmpty()) launchError(getString(R.string.campo_vazio))
+        if (value.isNotEmpty()) launchError(getString(R.string.vazio))
     }
 
     private fun setAutomaticLogin(view: View) {
@@ -67,7 +86,21 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
     }
 
     private fun observers() {
-
+        viewModel.userLogged.observe(this){result->
+            when(result){
+                is ResultUtil.Success->{
+                    binding.pbLogin.show()
+                    nextScreenWithFinish(MainActivity())
+                }
+                is ResultUtil.Error->{
+                    binding.pbLogin.show()
+                    dialog("Falha ao Logar",result.msg)
+                }
+                is ResultUtil.Loading->{
+                    binding.pbLogin.show()
+                }
+            }
+        }
     }
 
 }

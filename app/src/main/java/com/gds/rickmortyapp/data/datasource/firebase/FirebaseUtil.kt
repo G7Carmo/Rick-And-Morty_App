@@ -24,6 +24,8 @@ interface FirebaseUtil {
 
     interface RealtimeDatabase{
 
+        suspend fun registerSaveUser()
+
     }
 
     interface Storage{

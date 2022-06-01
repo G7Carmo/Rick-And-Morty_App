@@ -5,16 +5,20 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class Authenticator(auth : FirebaseAuth) : FirebaseUtil.Authenticator {
+    private val authenticator : FirebaseAuth
+    init {
+        authenticator = auth
+    }
     override suspend fun registerUser(
         email: String,
         password: String
-    ) = auth.createUserWithEmailAndPassword(email, password)
+    ) = authenticator.createUserWithEmailAndPassword(email, password)
 
 
     override suspend fun login(email: String, password: String) =
-        auth.signInWithEmailAndPassword(email, password)
+        authenticator.signInWithEmailAndPassword(email, password)
 
-    override suspend fun resetPassword(email: String) = auth.sendPasswordResetEmail(email)
+    override suspend fun resetPassword(email: String) = authenticator.sendPasswordResetEmail(email)
 
-    override suspend fun logout() = auth.signOut()
+    override suspend fun logout() = authenticator.signOut()
 }

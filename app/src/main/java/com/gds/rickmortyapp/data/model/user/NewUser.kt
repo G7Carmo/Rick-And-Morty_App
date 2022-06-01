@@ -4,5 +4,5 @@ data class NewUser(
     override val id: String? = "",
     override val email: String?,
     override val passwd: String?,
-    override val displayName: String?
+    override val displayName: String? = ""
 ) : User

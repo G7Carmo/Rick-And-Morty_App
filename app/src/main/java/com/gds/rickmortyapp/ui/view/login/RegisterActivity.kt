@@ -103,8 +103,15 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
                 }
             }
         }
-        viewModel.saveDataUser.observe(this){
-
+        viewModel.saveDataUser.observe(this){result->
+            when(result){
+                true -> {
+                    message("Dados salvos com sucesso")
+                }
+                false -> {
+                    message("falha ao salvar os dados")
+                }
+            }
         }
     }
 
