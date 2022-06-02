@@ -8,9 +8,11 @@ import androidx.room.TypeConverters
 import com.gds.rickmortyapp.data.database.dao.CharacterDao
 import com.gds.rickmortyapp.data.database.dao.EpisodeDao
 import com.gds.rickmortyapp.data.database.dao.LocationDao
+import com.gds.rickmortyapp.data.database.dao.UserDao
 import com.gds.rickmortyapp.data.model.episodeos.Episode
 import com.gds.rickmortyapp.data.model.localizacao.Location
 import com.gds.rickmortyapp.data.model.personagem.Character
+import com.gds.rickmortyapp.data.model.user.NewUser
 import com.gds.rickmortyapp.util.Constants.DATABASE_NAME
 import com.gds.rickmortyapp.util.Constants.VERSION_DB
 
@@ -18,7 +20,8 @@ import com.gds.rickmortyapp.util.Constants.VERSION_DB
     entities = [
         Episode::class,
         Location::class,
-        Character::class
+        Character::class,
+        NewUser::class
     ], version = VERSION_DB, exportSchema = false
 )
 @TypeConverters(Converter::class)
@@ -26,6 +29,7 @@ abstract class RickMortyDatabase : RoomDatabase() {
     abstract fun daoCharacter(): CharacterDao
     abstract fun daoLocation(): LocationDao
     abstract fun daoEpisode(): EpisodeDao
+    abstract fun daoUser() : UserDao
 
     companion object {
 

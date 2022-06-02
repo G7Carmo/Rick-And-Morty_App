@@ -1,4 +1,5 @@
 package com.gds.rickmortyapp.data.datasource.firebase
+import com.gds.rickmortyapp.data.model.user.NewUser
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
@@ -23,9 +24,11 @@ interface FirebaseUtil {
     }
 
     interface RealtimeDatabase{
-
-        suspend fun registerSaveUser()
-
+        suspend fun registerSaveUser(newUser: NewUser)
+        suspend fun deleteDataUser(newUser: NewUser)
+        suspend fun updateDataUser(newUser: NewUser)
+        suspend fun getUser(newUser: NewUser)
+        suspend fun getAllUsers()
     }
 
     interface Storage{
