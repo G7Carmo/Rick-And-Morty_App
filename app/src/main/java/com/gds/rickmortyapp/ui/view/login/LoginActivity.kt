@@ -61,7 +61,7 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
     }
 
     private fun loginUser(user: NewUser) {
-        viewModel.login(user.email!!,user.passwd!!)
+        viewModel.login(user.email,user.passwd!!)
     }
 
     private fun generateUser(email: String, password: String): NewUser {

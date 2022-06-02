@@ -7,10 +7,9 @@ import com.gds.rickmortyapp.data.database.RickMortyDatabase
 import com.gds.rickmortyapp.data.datasource.ApiDataSource
 import com.gds.rickmortyapp.data.datasource.firebase.Authenticator
 import com.gds.rickmortyapp.data.datasource.firebase.InstancesFB
-import com.gds.rickmortyapp.data.repository.AuthenticatorRepository
-import com.gds.rickmortyapp.data.repository.CharacterRepository
-import com.gds.rickmortyapp.data.repository.EpisodeRepository
-import com.gds.rickmortyapp.data.repository.LocationRepository
+import com.gds.rickmortyapp.data.datasource.firebase.RealtimeDatabase
+import com.gds.rickmortyapp.data.datasource.firebase.UserDataSource
+import com.gds.rickmortyapp.data.repository.*
 import com.gds.rickmortyapp.di.Injection
 
 open class ViewModelFactory(
@@ -33,7 +32,13 @@ open class ViewModelFactory(
                         datasource = Authenticator(
                             auth = InstancesFB.auth
                         )
-                    )
+                    ),
+                    userRepository = UserRepository(
+                        userDataSource = UserDataSource(InstancesFB.auth),
+                        dbLocal = RickMortyDatabase.invoke(context),
+                        dbRemote = RealtimeDatabase(InstancesFB.remoteDatabase)
+                    ),
+                    userDataSource = UserDataSource(InstancesFB.auth)
                 ) as T
             }
             modelClass.isAssignableFrom(ResetPasswordViewModel::class.java) -> {

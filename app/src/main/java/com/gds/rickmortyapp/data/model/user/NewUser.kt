@@ -8,7 +8,9 @@ import androidx.room.PrimaryKey
 data class NewUser(
     @PrimaryKey(autoGenerate = true)
     override val id: String? = "",
-    @ColumnInfo override val email: String?,
-    @ColumnInfo override val passwd: String?,
+    @ColumnInfo override val email: String,
+    @ColumnInfo override val passwd: String,
     @ColumnInfo override val displayName: String? = ""
-) : User
+) : User {
+
+}

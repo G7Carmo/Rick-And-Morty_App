@@ -2,6 +2,7 @@ package com.gds.rickmortyapp.ui.view.login
 
 import androidx.lifecycle.ViewModelProvider
 import com.gds.rickmortyapp.R
+import com.gds.rickmortyapp.data.model.user.LoggedInUser
 import com.gds.rickmortyapp.data.model.user.NewUser
 import com.gds.rickmortyapp.databinding.ActivityRegisterBinding
 import com.gds.rickmortyapp.ui.view.MainActivity
@@ -91,7 +92,8 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
             when(it){
                 is ResultUtil.Success->{
                     binding.pbRegister.hide()
-                    viewModel.saveDataUser(it.data)
+                    val user = gerandoDadosParaSalvar(it.data)
+                    viewModel.saveUser(user)
                     nextScreen(MainActivity())
                 }
                 is ResultUtil.Error->{
@@ -114,6 +116,15 @@ class RegisterActivity : BaseWithViewModelActivity<ActivityRegisterBinding, Regi
             }
         }
     }
+
+    private fun gerandoDadosParaSalvar(data: LoggedInUser): LoggedInUser {
+        return LoggedInUser(
+            email = data.email,
+            displayName = data.displayName,
+            userId = viewModel.userId()
+        )
+    }
+
 
 }
 
