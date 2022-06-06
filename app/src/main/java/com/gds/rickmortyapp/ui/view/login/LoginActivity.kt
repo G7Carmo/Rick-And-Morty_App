@@ -25,7 +25,7 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
     override fun getViewRoot() = binding.root
 
     override fun getMyViewModel(): LoginViewModel {
-        return ViewModelProvider(this,ViewModelFactory(this))[LoginViewModel::class.java]
+        return ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
     }
 
     override fun codeInject() {
@@ -52,25 +52,30 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
         }
     }
 
-    private fun initViews() = with(binding){
+    private fun initViews() = with(binding) {
         email = editInputEmail.extractString()
         password = editInputSenha.extractString()
-        verifyValues(email)
-        verifyValues(password)
-        loginUser(generateUser(email, password))
+        if (verifyValues(email) && verifyValues(password)){
+            loginUser(generateUser(email, password))
+        }
     }
 
     private fun loginUser(user: NewUser) {
-        viewModel.login(user.email,user.passwd!!)
+        viewModel.login(user.email, user.passwd)
     }
 
     private fun generateUser(email: String, password: String): NewUser {
-        return NewUser(email=email, passwd = password)
+        return NewUser(email = email, passwd = password)
     }
 
-    private fun verifyValues(value: String) {
-        if (value.isEmpty()) launchError(getString(R.string.campo_vazio))
-        if (value.isNotEmpty()) launchError(getString(R.string.vazio))
+    private fun verifyValues(value: String): Boolean {
+        return if (value.isEmpty()) {
+            launchError(getString(R.string.campo_vazio))
+            false
+        } else {
+            launchError(getString(R.string.vazio))
+            true
+        }
     }
 
     private fun setAutomaticLogin(view: View) {
@@ -86,17 +91,17 @@ class LoginActivity : BaseWithViewModelActivity<ActivityLoginBinding, LoginViewM
     }
 
     private fun observers() {
-        viewModel.userLogged.observe(this){result->
-            when(result){
-                is ResultUtil.Success->{
+        viewModel.userLogged.observe(this) { result ->
+            when (result) {
+                is ResultUtil.Success -> {
                     binding.pbLogin.show()
                     nextScreenWithFinish(MainActivity())
                 }
-                is ResultUtil.Error->{
+                is ResultUtil.Error -> {
                     binding.pbLogin.show()
-                    dialog("Falha ao Logar",result.msg)
+                    dialog("Falha ao Logar", result.msg)
                 }
-                is ResultUtil.Loading->{
+                is ResultUtil.Loading -> {
                     binding.pbLogin.show()
                 }
             }

@@ -1,6 +1,7 @@
 package com.gds.rickmortyapp.di
 
 import android.content.Context
+import com.gds.rickmortyapp.data.database.RickMortyDatabase
 import com.gds.rickmortyapp.data.datasource.interfaces.ApiRickMorty
 import com.gds.rickmortyapp.data.preferences.PreferencesUtil
 import com.gds.rickmortyapp.util.Constants.BASE_URL
@@ -31,5 +32,9 @@ object Injection {
 
     fun getPref(context: Context): PreferencesUtil {
         return PreferencesUtil(context)
+    }
+
+    fun getDatabase(context: Context) : RickMortyDatabase{
+        return RickMortyDatabase.invoke(context)
     }
 }

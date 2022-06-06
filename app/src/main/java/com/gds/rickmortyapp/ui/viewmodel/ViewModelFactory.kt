@@ -35,7 +35,7 @@ open class ViewModelFactory(
                     ),
                     userRepository = UserRepository(
                         userDataSource = UserDataSource(InstancesFB.auth),
-                        dbLocal = RickMortyDatabase.invoke(context),
+                        dbLocal = Injection.getDatabase(context),
                         dbRemote = RealtimeDatabase(InstancesFB.remoteDatabase)
                     ),
                     userDataSource = UserDataSource(InstancesFB.auth)
